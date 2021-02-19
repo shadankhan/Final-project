@@ -1,0 +1,52 @@
+{% extends "base.html"%}
+{% block body_block %}
+<section class="page-title pad" style="background-image:url('https://i.imgur.com/DZyLzfV.png');">
+        <div class="auto-container">
+            <span class="float-text">Invite</span>
+            <h1>Invite People</h1>
+            <ul class="bread-crumb clearfix">
+                <li><a href="/">Home </a></li>
+                <li>Invite </li>
+            </ul>
+        </div>
+    </section>
+
+<section class="sign-up-section">
+<div class="auto-container">
+    <div class="sign-up-form">
+        <div class="row clearfix">
+            <div class="form-column order-10 col-lg-8 col-md-10 col-sm-10">                    
+                <div class="inner-column">
+
+	<form action="." method="POST">
+		{%csrf_token %}
+		<div class="form-group">
+		  <label for="id_raising_request_for" class="form-label">Why do you want to invite other people?:</label>
+		  <textarea class="form-control" name="raising_request_for" id="id_raising_request_for" rows="3"></textarea>
+		</div>
+		<div class="form-group">
+		  <label for="id_location" class="form-label">Name of Restaurant(location):</label>
+		  <input type="text" class="form-control" name="location" id="id_location" placeholder="Location" required>
+		</div>
+		<div >
+		  <label for="id_dateandtime" >When are you going out? Please add Date and Time:</label>
+		  <input type="date" class="form-control" name="dateandtime" id="id_dateandtime"  required>
+		</div>
+		<div class="form-group">
+		  <label for="id_city" class="form-label">Going Out For:</label>
+		  <select name="going_out_for">
+		  	<option>-------</option>
+		  	<option value="Coffee">Coffee</option>
+		  	<option value="Lunch">Lunch</option>
+		  	<option value="Dinner">Dinner</option>
+		  </select>
+		</div>
+		<button type="submit" class="theme-btn btn-style-three">Submit</button>
+	</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

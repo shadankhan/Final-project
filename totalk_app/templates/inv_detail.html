@@ -1,0 +1,73 @@
+{% extends "base.html"%}
+{% block body_block %}
+
+<section id="header" class="jumbotron" style="background-image:url('https://i.imgur.com/DZyLzfV.png');">
+	<div class="container mt-5">
+
+	      <div class="row">
+	            <div class="col-sm-2">
+	              <img src="/{{inv.profile.image}}" alt="{{inv.profile.user.first_name}}" class="rounded-circle ppic" style="width: 150px;height: 150px;">
+	            </div>
+	    
+	        <div class="col-md-8">
+	          <h2 class="title object-non-visible padtitle" style="color:white" data-animation-effect="fadeIn" data-effect-delay="100">{{inv.profile.user.first_name}}&nbsp;{{inv.profile.user.last_name}}</h2>
+
+	          <p style="color:white">
+	          	<small ><i class="fa fa-briefcase"></i> {{inv.profile.ocupation}}</small></p>
+	          <p>{{inv.raising_request_for}}</p>
+	        </div>
+	    </div><br>
+
+	   
+	   	<div class="row">
+	        <div class="col-sm-2">
+	    		<div class="btn-box">
+
+	    		{% if inv.profile.insta %}
+	    		<button type="button" onclick="location.href='{{inv.profile.insta}}';" class="theme-btn btn-style-three">Instagram</button>
+	    		{% endif %}
+	    		
+	    		{% if inv.profile.linkedin %}
+	    		<button type="button" onclick="location.href='{{inv.profile.linkedin}}';" class="theme-btn btn-style-three">LinkedIn</button>
+	    		{% endif %}
+	    		</div>
+	    	</div>
+	    	<div class="col-sm-8">
+	    		<p style="text-align:left"><small><i class="fa fa-map-pin"></i>&nbsp; I'm going to <span style="color:yellow">{{inv.location}}</span>&nbsp;on <span style="color:yellow"> {{inv.dateandtime}}</span></small></p>
+	    		
+	    	</div>
+	    <div>
+	</div>
+    
+</section>
+<section id="gallery">
+    <span class="float-text">Interested</span><br><br>
+    
+   <div class="auto-container mt-4">
+        <div class="row">
+           
+            <div class="col-lg-12">
+                <center>
+                  <form action="{% url 'interested' %}" method="POST">
+          	    	{% csrf_token %}
+          	    	{% if is_interested %}
+          	    	<p style="color:red;">You have already shown your interest to this invite.</p>
+          	    	<button type="submit" name="id" class="theme-btn btn-style-five" value="{{inv.id}}">Remove</button>
+          	    	{% else %}
+          	    	<p style="color:red;">Hit interested button of you want to join.</p>
+          	    	<button type="submit" name="id" class="theme-btn btn-style-five" value="{{inv.id}}">Interested?</button>
+          	    	{% endif %}
+          	    	
+          	    </form>
+                </center>
+            </div>
+            
+        </div>
+   </div>
+</section>
+<br>
+<br>
+
+
+
+{% endblock %}

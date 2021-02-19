@@ -1,0 +1,99 @@
+{% extends 'base.html'%}
+{% block body_block %}
+<section class="page-title pad" style="background-image:url('https://i.imgur.com/DZyLzfV.png');">
+<div class="auto-container">
+    <span class="float-text">Invitations</span>
+    <h1>{{invitation.count}} People Going Out this Weekend</h1>
+    <ul class="bread-crumb clearfix">
+        <li><a href="/">Home </a></li>
+        <li>Invitations </li>
+    </ul>
+</div>
+</section>
+
+<section id="gallery">
+    <span class="float-text">Your Invites</span><br><br>
+    
+   <div class="auto-container mt-4">
+   	<form method="GET" action="." class="row g-3">
+   		  
+   	  <div class="col-lg-11">
+   	    <input type="text" class="form-control" name="q" value="{{request.GET.q}}" placeholder="Search City and Tags like Coffee, Dinner, Lunch.">
+   	  </div>
+   	  <div class="col-auto">
+   	    <button type="submit" class="btn btn-warning mb-3">Search</button>
+   	  </div>
+   	  
+   	</form>
+
+   	<br>
+        <div class="row">
+
+
+            {% if profile.verify %}
+			{% for i in contacts %}
+
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+
+                    <div class="pl-3 m-2">
+                    <img src="/{{i.profile.image}}" alt="user-profile-image" class="rounded-circle" style="width: 50px;height: 50px;"><span style="color:black;">&nbsp;&nbsp;{{i.profile.user.first_name}}&nbsp;{{i.profile.user.last_name}}</span>&nbsp;&nbsp;
+                    <span class="badge bg-secondary" style="color:white">{{i.going_out_for}}</span> 
+                    </div>
+                   
+                    
+
+                    <div class="card-body">
+                        <div>
+                        <p style="color:grey;">{{i.raising_request_for}}</p> 
+                        <center>
+                        <p><span class="badge bg-secondary" style="color:white;">{{i.dateandtime}}</span> 
+                           </p> 
+
+                        </div>
+                       	<br>                  
+                        </center>
+                        <div  align="center">
+                            <button onclick="location.href='/totalk/inv/{{i.id}}';" type="button" class="theme-btn btn-style-three"><i class="fas fa-eye"></i> View Detail</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-lg-12">
+                <center>
+                  <h2 style="color:red;">You're profile is in process!</h2>
+                </center>
+            </div>
+            {% endif %}
+            <br>
+
+            <div class="row">
+            {% if contacts.has_previous %}
+            <div class="col">
+                <center>
+                  <a href="?page={{contacts.previous_page_number}}" class="theme-btn btn-style-five">Previous </a>
+                </center>
+            </div>
+            {% endif %}
+            <center>
+              <a href="?page={{contacts.number}}" class="theme-btn btn-style-five">{{contacts.number}} </a>
+            </center>
+            {% if contacts.has_next %}
+            <div class="col">
+                <center>
+                  <a href="?page={{contacts.next_page_number}}" class="theme-btn btn-style-five">Next </a>
+                </center>
+            </div>
+            {% endif %}
+            </div>
+        </div>
+        <br>
+        <br>
+
+   </div>
+</section>
+
+{% endblock %}

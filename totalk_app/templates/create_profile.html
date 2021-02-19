@@ -1,0 +1,55 @@
+{% extends "base.html"%}
+{% block body_block %}
+  <section class="page-title pad" style="background-image:url('https://i.imgur.com/DZyLzfV.png');">
+        <div class="auto-container">
+            <span class="float-text">Create Profile</span>
+            <h1>Welcome to Totalk!, Create Profile</h1>
+            <ul class="bread-crumb clearfix">
+                <li><a href="/">Home </a></li>
+                <li>Create Profile</li>
+            </ul>
+        </div>
+    </section>
+
+
+<section class="sign-up-section">
+<div class="auto-container">
+    <div class="sign-up-form">
+        <div class="row clearfix">
+            <div class="form-column order-10 col-lg-8 col-md-10 col-sm-10">                    
+                <div class="inner-column">
+
+				<form enctype="multipart/form-data"action="." method="POST">
+					{% csrf_token %}
+					<div class="form-group">
+					 
+					  <textarea class="form-control" name="Bio" id="id_bio" rows="3" placeholder="Write about you, People will get to know you better"></textarea>
+					</div>
+					<div class="form-group">
+
+					  <input type="file" class="form-control" name="image" id="id_image"  required>
+					</div>
+					<div class="form-group">
+					  <input type="text" class="form-control" name="city" id="id_city" placeholder="Current City" required>
+					</div>
+					<div class="form-group">
+					 
+					  <input type="text" class="form-control" name="ocupation" id="id_ocupation" placeholder="Ocupation" required>
+					</div>
+					<div class="form-group">
+
+					  <input type="url" class="form-control" name="linkedin" id="id_linkedin" placeholder="Linkedin Profile">
+					</div>
+					<div class="form-group">
+					  <input type="url" class="form-control" name="insta" id="id_insta" placeholder="Instagram Profile">
+					</div>
+					<button type="submit" class="theme-btn btn-style-three">Submit</button><br><br>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</section>
+{% endblock %}
